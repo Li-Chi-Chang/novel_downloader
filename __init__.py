@@ -62,13 +62,12 @@ def downloadABook(oneurl):
     local_novel.head.title.string = booktitle
 
     while(True):
-        bookcontent = clearify(soup)
-
         chapter = local_novel.new_tag('div',loading='lazy')
-        chaptertext = BeautifulSoup(bookcontent.replace('\n','<br/>\n'),'html.parser')
+        chaptertext = BeautifulSoup(clearify(soup).replace('\n','<br/>\n'),'html.parser')
         print(chaptertext.text[:100])
         chapter.insert(0,chaptertext)
         local_novel.body.append(chapter)
+
         next = getnext(soup, oneurl)
         hasNext = next['hasNext']
         if not hasNext:
@@ -87,13 +86,14 @@ def downloadABook(oneurl):
     return booktitle
 
 if __name__=='__main__': 
-    f = open('downloadList.txt', 'r')
     dir_path = dirname(realpath(__file__))
+    f = open(join(dir_path,'downloadList.txt'), 'r')
+    lines = f.readlines()
+    f.close()
 
-    for line in f:
+    for line in lines:
         if('#' in line[0]):
             continue
         bookname = downloadABook(line.strip())
         send_email = send()
         send_email.send('lichiricky@gmail.com', ['lichiricky_4jjvvj@kindle.com','myk406@gmail.com'], bookname, '',join(dir_path,bookname+'.html'))
-    f.close()
