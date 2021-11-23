@@ -2,6 +2,11 @@
 
 For my wife
 
+## available features
+
+1. javascript rendered sites
+2. self defined callback for each sites (# not available now)
+
 ## my notes
 
 * add submodule
