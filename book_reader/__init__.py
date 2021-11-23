@@ -1,8 +1,7 @@
-from bs4 import BeautifulSoup
 from pandas import read_csv
 import requests
-
 from os.path import dirname, realpath, join
+
 class page_reader():
     def __init__(self, link):
         self.url = link

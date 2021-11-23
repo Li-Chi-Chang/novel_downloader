@@ -1,3 +1,0 @@
-website,encode,bookTitle,chapterTitle,chapterText,next,callback,webDriver,siteNote
-www.sto.cx,utf-8,NULL,NULL,BookContent,NULL,NULL,True,思兔
-NULL,NULL,NULL,NULL,NULL,NULL,False,True,初始設定
