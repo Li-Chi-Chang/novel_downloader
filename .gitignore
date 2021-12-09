@@ -4,6 +4,7 @@ etc/
 share/
 pyvenv.cfg
 .DS_Store
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
