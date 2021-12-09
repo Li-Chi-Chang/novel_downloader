@@ -29,6 +29,6 @@ def safari_driver():
     browser = Safari()
     return browser
 
-def get_novel_template():
+def get_html_template():
     from bs4 import BeautifulSoup
     return BeautifulSoup('<html><head><title></title></head><body></body></html>','html.parser')

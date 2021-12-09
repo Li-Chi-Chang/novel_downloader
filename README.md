@@ -24,3 +24,14 @@ For my wife
 * change submodule path
 
 https://stackoverflow.com/questions/913701/how-to-change-the-remote-repository-for-a-git-submodule/19126528
+
+* python virtual env
+
+    ```cmd
+    virtualenv .
+    source ./bin/activate
+    ```
+
+* simplify <-> traditional
+
+https://yanwei-liu.medium.com/python自然語言處理-四-繁簡轉換利器opencc-74021cbc6de3

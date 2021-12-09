@@ -1,0 +1,4 @@
+msedge-selenium-tools
+selenium
+bs4
+opencc-python-reimplemented

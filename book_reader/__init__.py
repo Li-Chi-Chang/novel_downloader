@@ -1,9 +1,11 @@
+from os import truncate
 import requests, re
 from bs4 import BeautifulSoup
 from urllib import parse
 from pandas import read_csv
 from .web_browser import safari_driver as webdriver # change if needed
 from os.path import dirname, realpath, join
+from opencc import OpenCC
 
 def clearify(soup, callback = lambda x: x):
     funcsoup = soup
@@ -21,7 +23,11 @@ def clearify(soup, callback = lambda x: x):
     originalText = re.sub('[ |\n]{2,}','\n',originalText)
     return originalText
 
-def filename_clearify(string, with_space=True):
+def translate_chinese(string):
+    cc = OpenCC('s2tw')
+    return cc.convert(string)
+
+def filename_clearify(string, with_space=True, translate=True):
     signs = ['?','“','”','/','\\','<','>','*','|',':','&', '+','\'','.','!','"','#',]
     for sign in signs:
         string = string.replace(sign,'')
@@ -71,8 +77,7 @@ class book_reader():
         if self.siteConfig['webDriverNeed'] == 'True':
             return webdriver()
         else:
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.49'}
-            return requests.session(headers=headers)
+            return requests.session()
 
     def getSoup(self):
         if self.siteConfig['webDriverNeed'] == 'True':
@@ -82,6 +87,8 @@ class book_reader():
             html = self.web.get(self.url)
             if self.siteConfig['encoding'] != 'Null':
                 html.encoding == self.siteConfig['encoding']
+                html = html.text
+        
         soup = BeautifulSoup(html,'html.parser')
         return soup
 
@@ -100,29 +107,43 @@ class book_reader():
         elif finditClass_a is not None:
             return finditClass_a
 
-    def getContent(self):
+    def getContent(self, translate = True):
+        out = ''
         chapterTextFromConfig = self.findIt(self.siteConfig['chapterText'])
         if chapterTextFromConfig is not None:
-            return clearify(chapterTextFromConfig)
+            out = clearify(chapterTextFromConfig)
         else:
             for s in self.soup.select('script'):
                 s.extract()
-            return clearify(self.soup)
+            out = clearify(self.soup)
+        
+        if(translate):
+            out = translate_chinese(out)
+        return out
     
-    def getBookName(self):
+    def getBookName(self, translate=True):
+        out = ''
         bookTitleFromConfig = self.findIt(self.siteConfig['bookTitle'])
         if bookTitleFromConfig is not None:
-            return clearify(bookTitleFromConfig)
+            out = clearify(bookTitleFromConfig)
         else:
-            return clearify(self.soup.title)
-    
-    def getChapterTitle(self):
+            out = clearify(self.soup.title)
+
+        if(translate):
+            out = translate_chinese(out)
+        return out
+
+    def getChapterTitle(self, translate=True):
+        out = ''
         chapterTitleFromConfig = self.findIt(self.siteConfig['chapterTitle'])
         if chapterTitleFromConfig is not None:
-            return clearify(chapterTitleFromConfig)
+            out = clearify(chapterTitleFromConfig)
         else:
-            return clearify(self.soup.title)
-    
+            out = clearify(self.soup.title)
+        if(translate):
+            out = translate_chinese(out)
+        return out
+
     def haveNextPage(self):
         haveNext = False
         nexturl = ''
@@ -163,7 +184,7 @@ class book_reader():
         if self.siteConfig['webDriverNeed'] == 'True':
             self.web.close()
         else:
-            self.web.config['keep_alive'] == False
+            pass
         return
 
 if __name__=='__main__':
