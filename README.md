@@ -12,7 +12,7 @@ For my wife
 * add submodule
 
     ```cmd
-    git submodule add git@github.com:Li-Chi-Chang/web_browser.git
+    git submodule add git@github.com:Li-Chi-Chang/web_browser.git book_reader/web_browser
     ```
 
 * pull with submodule
@@ -24,6 +24,8 @@ For my wife
 * change submodule path
 
 https://stackoverflow.com/questions/913701/how-to-change-the-remote-repository-for-a-git-submodule/19126528
+https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule
+https://stackoverflow.com/questions/9035895/how-do-i-add-a-submodule-to-a-sub-directory
 
 * python virtual env
 
