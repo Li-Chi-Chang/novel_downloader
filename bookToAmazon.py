@@ -1,6 +1,7 @@
 from gmail_sending import send
 from book_reader import book_reader,filename_clearify
 from book_reader.web_browser import get_html_template
+from mongo_IO import thisdirNovel, getRoot
 from bs4 import BeautifulSoup
 from os.path import dirname, realpath, join
 from subprocess import Popen, PIPE
@@ -64,6 +65,31 @@ def downloadABook_epub(oneurl):
     book.closePage()
     return booktitle
 
+def downloadABook_ForMyServer(oneurl,dbdirID):
+    book = book_reader(oneurl)
+    dbio = thisdirNovel(dbdirID)
+
+    booktitle = filename_clearify(book.getBookName())
+    dbio.insertANovel(booktitle)
+
+    while(True):
+        chapter = book.getChapterTitle()
+        chaptertext = book.getContent()
+        dbio.insertAChapter(chapter,chaptertext.replace('\n','<br/>\n'))
+        print(chaptertext[:100])
+        
+        next = book.haveNextPage()
+        haveNext = next['haveNext']
+        if not haveNext:
+            break
+        else:
+            book.getNextPage()
+    print('done')
+    
+    book.closePage()
+    dbio.close()
+    return booktitle
+
 def downloadAndSendToAmazon(oneurl, sender, sendeelist):
     bookname = downloadABook_html(oneurl.strip())
     send_email = send()
@@ -79,4 +105,10 @@ if __name__=='__main__':
         if('#' in line[0]):
             continue
         # downloadAndSendToAmazon(line.strip(), sender='lichiricky@gmail.com', sendeelist=['lichiricky_4jjvvj@kindle.com','myk406@gmail.com'])
-        downloadABook_epub(line.strip())
+
+        # booktitle = downloadABook_epub(line.strip())
+        # send_email = send()
+        # send_email.send('lichiricky@gmail.com', ['lichiricky_4jjvvj@kindle.com','myk406@gmail.com'], booktitle, 'as attachment',join(dir_path,booktitle+'.epub'))
+
+        # root = getRoot()
+        downloadABook_ForMyServer(line.strip(),'61e971482ecb06ca7117f4da')

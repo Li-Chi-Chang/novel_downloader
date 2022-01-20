@@ -1,4 +1,5 @@
 website,encode,bookTitle,chapterTitle,chapterText,next,callback,webDriver,siteNote
+www.51shucheng.net,utf-8,BookHome,Null,neirong,BookNext,False,True,無憂書城
 www.sto.cx,utf-8,Null,Null,BookContent,Null,False,True,思兔
 www.mbtxt.la,gbk,linkIndex,Null,readcontent,linkNext,False,False,妙筆文學
 www.twfanti.com,utf-8,Null,Null,pt-read-text,pt-nextchapter,False,False,
