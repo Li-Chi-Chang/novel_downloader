@@ -6,7 +6,7 @@ from os import makedirs
 from os.path import join
 
 mongodbPath = 'mongodb://127.0.0.1/dirDB'
-siteDataPath = '/Volumes/DATA/SiteData/'
+siteDataPath = '/Volumes/DATA/Site/SiteData/'
 
 '''
 novel = {
