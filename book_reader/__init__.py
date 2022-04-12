@@ -1,3 +1,4 @@
+import imp
 from os import truncate
 import requests, re
 from bs4 import BeautifulSoup
@@ -108,6 +109,9 @@ class book_reader():
             return finditClass_a
 
     def getContent(self, translate = True):
+        import sys
+        sys.path.insert(1, realpath(dirname(__file__)))
+        from site_callback import site_callbacks
         out = ''
         chapterTextFromConfig = self.findIt(self.siteConfig['chapterText'])
         if chapterTextFromConfig is not None:
@@ -119,6 +123,7 @@ class book_reader():
         
         if(translate):
             out = translate_chinese(out)
+        out = site_callbacks(self.url,out)
         return out
     
     def getBookName(self, translate=True):

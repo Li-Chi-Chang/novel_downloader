@@ -2,6 +2,20 @@ from binascii import unhexlify
 import re
 import time
 
+def site_callbacks(url, text):
+    if('www.sto.cx' in url):
+        return wwwstocx_clearify_callback(text)
+    elif('big5.quanben5.com' in url):
+        return big5quanben5com_clearify_callback(text)
+    elif('www.uukanshu.com' in url):
+        return wwwuukanshucom_clearify_callback(text)
+    elif('aixdzs.com' in url):
+        return aixdzscom_clearify_callback(text)
+    elif('shubaow.net' in url):
+        return shubaownet_clearify_callback(text)
+    else:
+        return text
+
 def wwwstocx_clearify_callback(text):
     codes = re.findall('%[a-z|A-Z|0-9]{2}%[a-z|A-Z|0-9]{2}%[a-z|A-Z|0-9]{2}', text)
     if(len(codes)>0):
@@ -19,7 +33,6 @@ def wwwstocx_clearify_callback(text):
     text = re.sub('＊','',text)
     return text
 
- 
 def big5quanben5com_clearify_callback(text):
     text = re.sub(' - 全本小說網','',text)
     return text
