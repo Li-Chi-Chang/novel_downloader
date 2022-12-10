@@ -1,3 +1,6 @@
 [submodule "web_browser"]
 	path = web_browser
 	url = git@github.com:Li-Chi-Chang/web_browser.git
+[submodule "gmail_sending"]
+	path = gmail_sending
+	url = git@github.com:Li-Chi-Chang/gmail_sending.git
