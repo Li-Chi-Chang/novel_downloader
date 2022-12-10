@@ -41,17 +41,20 @@ For my wife
 
 * change submodule path
 
-https://stackoverflow.com/questions/913701/how-to-change-the-remote-repository-for-a-git-submodule/19126528
-https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule
-https://stackoverflow.com/questions/9035895/how-do-i-add-a-submodule-to-a-sub-directory
+<https://stackoverflow.com/questions/913701/how-to-change-the-remote-repository-for-a-git-submodule/19126528>
+<https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule>
+<https://stackoverflow.com/questions/9035895/how-do-i-add-a-submodule-to-a-sub-directory>
 
 * python virtual env
 
     ```cmd
     virtualenv .
+    :: Mac
     source ./bin/activate
+    :: Windows
+    .\Scripts\activate
     ```
 
 * simplify <-> traditional
 
-https://yanwei-liu.medium.com/python自然語言處理-四-繁簡轉換利器opencc-74021cbc6de3
+    <https://yanwei-liu.medium.com/python自然語言處理-四-繁簡轉換利器opencc-74021cbc6de3>
