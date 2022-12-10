@@ -2,6 +2,9 @@
 bin/
 etc/
 share/
+Include/
+Lib/
+Scripts/
 pyvenv.cfg
 .DS_Store
 .vscode/

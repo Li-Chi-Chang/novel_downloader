@@ -2,10 +2,28 @@
 
 For my wife
 
+## Install
+
+1. pip install -r requirements.txt
+2. pip install -r gmail_sending/requirements.txt
+3. pip install -r web_browser/requirements.txt
+
+## Add a site
+
+1. go to novelSitesSetting.csv
+2. Add CSS selector and url and note for it.
+3. if need more clearify, specify "Y", otherwise, "N".
+4. if need more clearify, code the clear function in siteCustomClearify.py
+
+## Download
+
+1. add start url and end url to def scope.
+2. run python download.py
+
 ## available features
 
-1. javascript rendered sites
-2. self defined callback for each sites (# not available now)
+1. javascript rendered sites (ALL)
+2. ~~self defined callback for each sites (# not available now)~~
 
 ## my notes
 

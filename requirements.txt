@@ -1,5 +1,1 @@
 bs4
-pandas
-bs4
-opencc-python-reimplemented
-# pandoc is required.
