@@ -1,5 +1,5 @@
 from gmail_sending import send
-from novel_downloader.novel_downloader import onlineBook
+from novel_downloader import onlineBook
 
 from os.path import realpath,dirname,join
 from bs4 import BeautifulSoup
