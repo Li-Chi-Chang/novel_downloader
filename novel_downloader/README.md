@@ -4,13 +4,13 @@ For my wife
 
 ## Install
 
-1. pip install -r requirements.txt
+1. pip install -r novel_downloader/requirements.txt
 2. pip install -r gmail_sending/requirements.txt
 3. pip install -r web_browser/requirements.txt
 
 ## Add a site
 
-1. go to novelSitesSetting.csv
+1. go to novel_downloader/novelSitesSetting.csv
 2. Add CSS selector and url and note for it.
 3. if need more clearify, specify "Y", otherwise, "N".
 4. if need more clearify, code the clear function in siteCustomClearify.py

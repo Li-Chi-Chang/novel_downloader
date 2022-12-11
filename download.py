@@ -47,7 +47,8 @@ def downloadABook_HTML(starturl,endurl):
 def downloadAndPushToAmazon(starturl,endurl):
     bookname = downloadABook_HTML(starturl,endurl)
     send_email = send()
-    send_email.send('lichiricky@gmail.com', ['lichiricky_4jjvvj@kindle.com'], bookname, '',join(dir_path,bookname+'.html'))
+    # lichiricky_4jjvvj@kindle.com
+    send_email.send('lichiricky@gmail.com', ['lichiricky@gmail.com'], bookname, '',join(dir_path,bookname+'.html'))
 
 
 if __name__=="__main__": 

@@ -1,9 +1,22 @@
-import re
-from web_browser import edge_driver
+import re, os, sys
 from csv import DictReader
-import siteCustomClearify
+from dotenv import load_dotenv
 
-siteSettingFile = "novelSitesSetting.csv"
+# put web_browser in root (same with folder: novel_downloader)!!!!!!!!
+from web_browser import edge_driver
+
+load_dotenv()
+if(os.getenv('siteCustomClearifyFolder') == None):
+	sys.path.append('setting')
+else:
+	sys.path.append(os.getenv('siteCustomClearifyFolder'))
+
+if(os.getenv('siteSettingFile') == None):
+	siteSettingFile = 'setting/novelSitesSetting.csv'
+else:
+	siteSettingFile = os.getenv('siteSettingFile')
+
+import siteCustomClearify
 
 def filename_clearify(astring, with_space=True):
 	signs = ['?','“','”','/','\\','<','>','*','|',':','&', '+','\'','.','!','"','#',]
