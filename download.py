@@ -25,7 +25,7 @@ def downloadABook_HTML(starturl,endurl):
     local_novel.head.title.string = booktitle
 
     while(True):
-        sleep(2 + randrange(300)/100)
+        sleep(1 + randrange(200)/100)
         htmlchapter = local_novel.new_tag('h4',loading='lazy')
         htmlcontent = local_novel.new_tag('div',loading='lazy')
 
