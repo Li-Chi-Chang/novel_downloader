@@ -6,6 +6,14 @@ from bs4 import BeautifulSoup
 from time import sleep
 from random import randrange
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+if(os.getenv('downloadListFile') == None):
+	downloadListFile = 'setting/downloadList.txt'
+else:
+	downloadListFile = os.getenv('downloadListFile')
+
 def get_html_template():
     return BeautifulSoup('<html><head><title></title></head><body></body></html>','html.parser')
 
@@ -52,7 +60,7 @@ def downloadAndPushToAmazon(starturl,endurl):
 
 
 if __name__=="__main__": 
-    f = open("downloadList.txt", "r")
+    f = open(downloadListFile, "r")
     dir_path = dirname(realpath(__file__))
 
     for line in f:
