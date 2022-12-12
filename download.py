@@ -18,6 +18,15 @@ if(os.getenv('downloadDoneFolder') == None):
 else:
     downloadDoneFolder = os.getenv('downloadDoneFolder')
 
+if(os.getenv('EmailFrom') == None):
+    EmailFrom = 'temp@temp.com'
+else:
+    EmailFrom = os.getenv('EmailFrom')
+if(os.getenv('EmailTo') == None):
+    EmailTo = 'temp@temp.com'
+else:
+    EmailTo = os.getenv('EmailTo')
+
 def get_html_template():
     return BeautifulSoup('<html><head><title></title></head><body></body></html>','html.parser')
 
@@ -59,13 +68,13 @@ def downloadABook_HTML(starturl,endurl):
 def downloadAndPushToAmazon(starturl,endurl):
     bookname = downloadABook_HTML(starturl,endurl)
     send_email = send()
-    # lichiricky_4jjvvj@kindle.com
-    send_email.send('lichiricky@gmail.com', ['lichiricky@gmail.com'], bookname, '',join(dir_path,bookname+'.html'))
+    dir_path = join(dirname(realpath(__file__)),downloadDoneFolder)
+    send_email.send(EmailFrom, [EmailTo], bookname, '',join(dir_path,bookname+'.html'))
 
 
 if __name__=="__main__": 
     f = open(downloadListFile, "r")
-    dir_path = dirname(realpath(__file__))
+    
 
     for line in f:
         if('#' in line[0]):
