@@ -10,9 +10,13 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 if(os.getenv('downloadListFile') == None):
-	downloadListFile = 'setting/downloadList.txt'
+    downloadListFile = 'setting/downloadList.txt'
 else:
-	downloadListFile = os.getenv('downloadListFile')
+    downloadListFile = os.getenv('downloadListFile')
+if(os.getenv('downloadDoneFolder') == None):
+    downloadDoneFolder = ''
+else:
+    downloadDoneFolder = os.getenv('downloadDoneFolder')
 
 def get_html_template():
     return BeautifulSoup('<html><head><title></title></head><body></body></html>','html.parser')
@@ -46,7 +50,7 @@ def downloadABook_HTML(starturl,endurl):
         else:
             break
 
-    with open(booktitle+'.html','w',encoding='utf-16') as f:
+    with open(join(downloadDoneFolder,booktitle+'.html'),'w',encoding='utf-16') as f:
         f.write(str(local_novel))
 
     thisbook.close()

@@ -10,6 +10,7 @@ pyvenv.cfg
 .DS_Store
 .vscode/
 downloadList_Mine.txt
+Done/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
