@@ -53,14 +53,14 @@ def downloadABook_HTML(starturl,endurl):
         
         local_novel.body.append(htmlchapter)
         local_novel.body.append(htmlcontent)
-        
+
+        with open(join(downloadDoneFolder,booktitle+'.html'),'w',encoding='utf-16') as f:
+                f.write(str(local_novel))
         if(thisbook.goToNextPage()):
+            
             continue
         else:
             break
-
-    with open(join(downloadDoneFolder,booktitle+'.html'),'w',encoding='utf-16') as f:
-        f.write(str(local_novel))
 
     thisbook.close()
     return booktitle
