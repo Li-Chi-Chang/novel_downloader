@@ -63,7 +63,7 @@ class onlineBook:
 	def __getTitle(self):
 		title = ''
 		if self.SiteConfig == True:
-			title = self.webdriver.find_element_by_css_selector(self.TitleCSSSelector).text
+			title = self.webdriver.find_element_by_css_selector(self.TitleCSSSelector).get_attribute('innerText')
 		else:
 			title = self.webdriver.title
 		return filename_clearify(title)

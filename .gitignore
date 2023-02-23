@@ -11,7 +11,7 @@ pyvenv.cfg
 .vscode/
 downloadList_Mine.txt
 Done/
-
+test.ipynb
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
